@@ -124,6 +124,12 @@ sed -i "s/#START=yes/START=yes/" /etc/default/beanstalkd
 apt-get install -y redis-server
 sed -i "s/daemonize yes/daemonize no/" /etc/redis/redis.conf
 
+# Mongo Db
+apt-get install  pkg-config libssl-dev libsslcommon2-dev
+pecl install mongodb
+echo "extension=mongodb.so" >> /etc/php/7.0/mods-available/mongodb.ini
+ln -s /etc/php/7.0/mods-available/mongodb.ini /etc/php/7.0/fpm/conf.d/mongodb.ini
+
 # Configure default nginx site
 block="server {
     listen 80 default_server;
