@@ -12,10 +12,10 @@ web:
 
     volumes:
         - ./:/var/www
-        - ./sites:/etc/nginx/sites-enabled
+       # - ./sites:/etc/nginx/sites-enabled
         #- ~/.composer:/home/homestead/.composer # composer caching
         #- ~/.gitconfig:/home/homestead/.gitconfig # Git configuration ( access alias && config )
-       # - ~/.ssh:/home/homestead/.ssh # Ssh keys for easy deployment inside the container
+        - ~/.ssh:/home/homestead/.ssh # Ssh keys for easy deployment inside the container
        # - ~/apps:/apps # all apps
        # - ~/apps/volumes/nginx/sites-available:/etc/nginx/sites-available # nginx sites ( in case you recreate the container )
        # - ~/apps/volumes/nginx/sites-enabled:/etc/nginx/sites-enabled # nginx sites ( in case you recreate the container )
@@ -23,16 +23,17 @@ web:
         - mysql
         - mongo
 
+
 mysql:
   image: dydx/alpine-mariadb
   ports:
     - "3306:3306"
   volumes:
-    - ./database:/var/lib/mysql
+    - ./database-homestead:/var/lib/mysql
 
 mongo:
   image: mongo:3.0.4
   volumes:
-     - ./database:/data/db
+     - ./database-homestead:/data/db
   ports:
     - "27017:27017"
