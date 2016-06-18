@@ -1,5 +1,5 @@
 web:
-    image: shincoder/homestead:php7.0
+    image: albovieira/homestead-docker
     restart: always
     ports:
         - "8000:80" # web
